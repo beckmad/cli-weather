@@ -1,0 +1,12 @@
+{
+  "name": "cli-weather",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "amadiev",
+  "license": "ISC",
+  "description": "cli application",
+  "repository": "https://github.com/devm4d/cli-weather.git"
+}
