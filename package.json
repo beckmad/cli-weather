@@ -2,6 +2,10 @@
   "name": "cli-weather",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": {
+    "weather": "index.js"
+  },
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +18,7 @@
   ],
   "repository": "https://github.com/devm4d/cli-weather.git",
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "yargs": "^17.5.1"
   }
 }
