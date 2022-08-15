@@ -2,7 +2,7 @@ const MINUS_PREFIX = '-';
 
 export const getArguments = (processArguments) => {
     const groupedArgs = {};
-    const [,, ...args] = processArguments;
+    const [, , ...args] = processArguments;
 
     args.forEach((arg, index, array) => {
         if (arg.charAt(0) === MINUS_PREFIX) {

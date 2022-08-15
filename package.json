@@ -19,6 +19,7 @@
   "repository": "https://github.com/devm4d/cli-weather.git",
   "dependencies": {
     "axios": "^0.27.2",
-    "yargs": "^17.5.1"
+    "chalk": "^5.0.1",
+    "dedent": "^0.7.0"
   }
 }
