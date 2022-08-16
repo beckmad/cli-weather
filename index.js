@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {getArguments} from './helpers/index.js';
 import {getWeather, printError, printHelp, setKeyValue, STORAGE_KEYS, printForecast} from './services/index.js';
 import {getKeyValue} from './services/storageService.js';

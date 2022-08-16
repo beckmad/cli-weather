@@ -1,6 +1,6 @@
 {
-  "name": "cli-weather",
-  "version": "1.0.0",
+  "name": "cli-weather-beckmad",
+  "version": "1.0.2",
   "main": "index.js",
   "bin": {
     "weather": "index.js"
