@@ -1,5 +1,6 @@
-import { getArguments } from './helpers/index.js';
-import { printError, setKeyValue, getWeather, printHelp, printSuccess } from './services/index.js';
+import {getArguments} from './helpers/index.js';
+import {getWeather, printError, printHelp, setKeyValue, STORAGE_KEYS, printForecast} from './services/index.js';
+import {getKeyValue} from './services/storageService.js';
 
 const saveToken = async (token) => {
     if (!token.length) {
@@ -8,18 +9,33 @@ const saveToken = async (token) => {
     }
 
     try {
-        await setKeyValue('token', token);
+        await setKeyValue(STORAGE_KEYS.token, token);
     } catch (e) {
         printError(e)
     }
 }
 
-const getForecast = async (city) => {
+const saveCity = async (city) => {
+    if (!city.length) {
+        printError('Не передан город');
+        return;
+    }
+
     try {
-        const weather = await getWeather(city);
-        console.log(weather);
+        await setKeyValue(STORAGE_KEYS.city, city);
+        const forecast = await loadForecast();
+        printForecast(forecast);
     } catch (e) {
-        switch (e?.response.status) {
+        printError(e)
+    }
+}
+
+const loadForecast = async () => {
+    try {
+        const city = await getKeyValue(STORAGE_KEYS.city);
+        return await getWeather(city);
+    } catch (e) {
+        switch (e?.response?.status) {
             case (401):
                 printError('Неправильный токен.');
                 break;
@@ -27,20 +43,28 @@ const getForecast = async (city) => {
                 printError('Город не найден.');
                 break;
             default:
-                printError('Ошибка при получении города.');
+                printError(`Ошибка при получении города. ${e}`);
                 break;
-        };
+        }
     }
 }
 
-const main = async () => {
+const main = () => {
     const args = getArguments(process.argv);
 
-    if (args.h) printHelp();
+    if (args.h) {
+        printHelp();
+        return;
+    }
 
-    if (args.t) await saveToken(args.t);
+    if (args.c) {
+        saveCity(args.c);
+        return
+    }
 
-    if (args.c) getForecast(args.c);
+    if (args.t) {
+        saveToken(args.t);
+    }
 }
 
 main();

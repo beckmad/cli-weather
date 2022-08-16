@@ -6,7 +6,8 @@ import { printError } from './logService.js';
 const filePath = join(homedir(), 'weather-token.json');
 
 export const STORAGE_KEYS = {
-    token: 'token'
+    token: 'token',
+    city: 'city'
 }
 
 export const setKeyValue = async (key, value) => {

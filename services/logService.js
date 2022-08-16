@@ -18,3 +18,14 @@ export const printHelp = () => {
         `)
     )
 }
+
+export const printForecast = (forecast) => {
+    console.log(
+        dedent(`${chalk.bgCyanBright('Weather:')}
+        Город: ${forecast.name}, ${forecast.weather[0].description}
+        Температура: ${forecast.main.temp}
+        Ощущается: ${forecast.main.feels_like}
+        Скорость ветка: ${forecast.wind.speed}
+        `)
+    )
+}
